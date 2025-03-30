@@ -37,7 +37,7 @@ spec:
               service:
                 name: {{ include "autokitteh.fullname" $ }}
                 port:
-                  number: {{ $.Values.service.port }}
+                  number: {{ $.Values.httpService.port }}
           {{- end }}
     {{- end }}
 {{- end }}
