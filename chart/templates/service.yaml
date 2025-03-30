@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "autokitteh.fullname" . }}-http
+  labels:
+    {{- include "autokitteh.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.httpService.type }}
+  ports:
+    - port: {{ .Values.httpService.port }}
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    {{- include "autokitteh.selectorLabels" . | nindent 4 }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "autokitteh.fullname" . }}-webui
+  labels:
+    {{- include "autokitteh.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.webUIService.type }}
+  ports:
+    - port: {{ .Values.webUIService.port }}
+      targetPort: webui
+      protocol: TCP
+      name: http
+  selector:
+    {{- include "autokitteh.selectorLabels" . | nindent 4 }}
